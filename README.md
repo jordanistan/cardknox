@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./.github/cardknox_logo.jpeg" alt="Cardknox" />
+  <img src="./cardknox_logo.jpeg" alt="Cardknox" />
 
   &#xa0;
 
