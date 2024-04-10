@@ -13,16 +13,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Install sbom-generator
-        run: |
-          # Install sbom-generator (replace with actual installation steps)
-          # For example, if sbom-generator is available via npm:
-          npm install -g sbom
-
       - name: Generate SBOM
         id: generate-sbom
         run: |
-          sbom --output sbom.json
+          npm sbom > sbom.json
           echo "::set-output name=sbom-filepath::sbom.json"
 
   scan-vulnerabilities:
