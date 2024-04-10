@@ -17,7 +17,7 @@ jobs:
         run: |
           # Install sbom-generator (replace with actual installation steps)
           # For example, if sbom-generator is available via npm:
-          npm install -g sbom-generator
+          npm install -g sbom
 
       - name: Generate SBOM
         id: generate-sbom
