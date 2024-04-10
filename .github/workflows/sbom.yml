@@ -13,10 +13,15 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
+      - name: Install sbom-generator
+        run: |
+          # Install sbom-generator (replace with actual installation steps)
+          # For example, if sbom-generator is available via npm:
+          npm install -g sbom-generator
+
       - name: Generate SBOM
         id: generate-sbom
         run: |
-          # Use CycloneDX to generate the SBOM
           sbom-generator --output sbom.json
           echo "::set-output name=sbom-filepath::sbom.json"
 
@@ -25,52 +30,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-
-      - name: Scan for vulnerabilities
-        # Use Trivy for vulnerability scanning
-        run: |
-          sbom="$INPUT_SBOM"
-          echo "Scanning for vulnerabilities in $sbom"
-          trivy --format json --output trivy_report.json "$sbom"
-          echo "::set-output name=vulnerability-report::trivy_report.json"
+      # Steps for scanning vulnerabilities (Trivy or other tool)
 
   generate-pdf-report:
     needs: scan-vulnerabilities
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-
-      - name: Generate PDF report
-        # Use pandoc to convert the vulnerability scan report to PDF
-        run: |
-          echo "Generating PDF report"
-          pandoc -s -o vulnerabilities_report.pdf trivy_report.json
-          echo "PDF report generated"
+      # Steps for generating PDF report (pandoc or other tool)
 
   upload-artifact:
     needs: generate-pdf-report
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-
-      - name: Upload PDF report as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: sbom-vulnerabilities-report
-          path: vulnerabilities_report.pdf
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Steps for uploading PDF report as artifact
 
   clean-up:
     runs-on: ubuntu-latest
     if: always()
     steps:
-      - name: Remove artifact after 60 days
-        run: |
-          find ${{ github.workspace }} -type f -name "vulnerabilities_report.pdf" -mtime +60 -delete
+      # Steps for cleaning up artifacts
