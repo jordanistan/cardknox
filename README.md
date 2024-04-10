@@ -103,6 +103,29 @@ $ docker build -t cardknox-dashboard-app .
 $ docker run -p 5000:5000 cardknox-dashboard-app
 
 # The server will initialize in the <http://localhost:5000>
+$ http://localhost:5000
+
+# Test to see if you can connect 
+$ curl -o /dev/null -w '%{http_code}\n' -s -I http://127.0.0.1:5000/ -vvvv 
+
+# If the output was "200" this means you were successfully 
+*   Trying 127.0.0.1:5000...
+* Connected to 127.0.0.1 (127.0.0.1) port 5000
+> HEAD / HTTP/1.1
+> Host: 127.0.0.1:5000
+> User-Agent: curl/8.4.0
+> Accept: */*
+>
+< HTTP/1.1 200 OK <------ AWESOME You DID IT!~
+< Server: Werkzeug/3.0.2 Python/3.12.2
+< Date: Wed, 10 Apr 2024 05:46:14 GMT
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 5120
+< Connection: close
+<
+* Closing connection
+200 <------ AWESOME You DID IT!~
+
 ```
 ## :memo: License ##
 
