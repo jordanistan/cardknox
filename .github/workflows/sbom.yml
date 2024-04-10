@@ -16,7 +16,7 @@ jobs:
       - name: Generate SBOM
         id: generate-sbom
         run: |
-          npm sbom > sbom.json
+          npm sbom --sbom-format cyclonedx --sbom-type application > sbom.json
           echo "::set-output name=sbom-filepath::sbom.json"
 
   scan-vulnerabilities:
