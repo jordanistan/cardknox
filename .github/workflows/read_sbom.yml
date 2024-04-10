@@ -1,0 +1,32 @@
+name: Create SBOM Report
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-sbom-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Read SBOM file
+        id: read-sbom
+        run: |
+          sbom=$(cat .git/SBOM)
+          echo "::set-output name=sbom::$sbom"
+
+      - name: Create SBOM Report
+        id: create-report
+        run: |
+          sbom="$INPUT_SBOM"
+          curl -X POST -H "Content-Type: application/json" -d "$sbom" "https://api.scribesecurity.com/sbom/v1/generate-report" > report.pdf
+
+      - name: Upload SBOM Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: sbom-report
+          path: report.pdf
