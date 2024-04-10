@@ -22,7 +22,7 @@ jobs:
       - name: Generate SBOM
         id: generate-sbom
         run: |
-          sbom-generator --output sbom.json
+          sbom --output sbom.json
           echo "::set-output name=sbom-filepath::sbom.json"
 
   scan-vulnerabilities:
