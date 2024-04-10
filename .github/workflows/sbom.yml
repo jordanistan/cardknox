@@ -31,6 +31,8 @@ jobs:
 
     steps:
       # Steps for scanning vulnerabilities (Trivy or other tool)
+      - name: Check out repository
+        uses: actions/checkout@v2
 
   generate-pdf-report:
     needs: scan-vulnerabilities
@@ -38,6 +40,8 @@ jobs:
 
     steps:
       # Steps for generating PDF report (pandoc or other tool)
+      - name: Check out repository
+        uses: actions/checkout@v2
 
   upload-artifact:
     needs: generate-pdf-report
@@ -45,9 +49,13 @@ jobs:
 
     steps:
       # Steps for uploading PDF report as artifact
+      - name: Check out repository
+        uses: actions/checkout@v2
 
   clean-up:
     runs-on: ubuntu-latest
     if: always()
     steps:
       # Steps for cleaning up artifacts
+      - name: Check out repository
+        uses: actions/checkout@v2
