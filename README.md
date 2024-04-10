@@ -87,7 +87,23 @@ $ python dashboard.py
 
 # The server will initialize in the <http://localhost:5000>
 ```
+## :checkered_flag: Docker ##
 
+```bash
+# Clone this project
+$ git clone https://github.com/jordanistan/cardknox
+
+# Access
+$ cd cardknox
+
+# Install dependencies
+$ docker build -t cardknox-dashboard-app .
+
+# Run the project
+$ docker run -p 5000:5000 cardknox-dashboard-app
+
+# The server will initialize in the <http://localhost:5000>
+```
 ## :memo: License ##
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
