@@ -1,32 +1,32 @@
-name: Create SBOM Report
+# name: Create SBOM Report
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  create-sbom-report:
-    runs-on: ubuntu-latest
+# jobs:
+#   create-sbom-report:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Check out repository
+#         uses: actions/checkout@v2
 
-      - name: Read SBOM file
-        id: read-sbom
-        run: |
-          sbom=$(cat reports/cardknox_jordanistan_74d2e90a5afb558b49da3591889321f79f51065a.json)
-          echo "::set-output name=sbom::$sbom"
+#       - name: Read SBOM file
+#         id: read-sbom
+#         run: |
+#           sbom=$(cat reports/cardknox_jordanistan_74d2e90a5afb558b49da3591889321f79f51065a.json)
+#           echo "::set-output name=sbom::$sbom"
 
-      - name: Create SBOM Report
-        id: create-report
-        run: |
-          sbom="$INPUT_SBOM"
-          curl -X POST -H "Content-Type: application/json" -d "$sbom" "https://api.scribesecurity.com/sbom/v1/generate-report" > report.pdf
+#       - name: Create SBOM Report
+#         id: create-report
+#         run: |
+#           sbom="$INPUT_SBOM"
+#           curl -X POST -H "Content-Type: application/json" -d "$sbom" "https://api.scribesecurity.com/sbom/v1/generate-report" > report.pdf
 
-      - name: Upload SBOM Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: sbom-report
-          path: report.pdf
+#       - name: Upload SBOM Report
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: sbom-report
+#           path: report.pdf
