@@ -16,7 +16,7 @@ jobs:
       - name: Read SBOM file
         id: read-sbom
         run: |
-          sbom=$(cat .git/SBOM/cardknox_jordanistan_74d2e90a5afb558b49da3591889321f79f51065a.json)
+          sbom=$(cat reports/cardknox_jordanistan_74d2e90a5afb558b49da3591889321f79f51065a.json)
           echo "::set-output name=sbom::$sbom"
 
       - name: Create SBOM Report
