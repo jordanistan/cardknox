@@ -51,7 +51,7 @@ jobs:
 
     steps:
       - name: Upload PDF report as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: vulnerabilities-report
           path: vulnerabilities_report.pdf
